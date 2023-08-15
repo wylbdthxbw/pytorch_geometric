@@ -80,7 +80,7 @@ def train():
 
 
 @torch.no_grad()
-def test():
+def ttest():
     model.eval()
     pred = model(data.x, data.edge_index, data.edge_attr).argmax(dim=-1)
 
@@ -95,7 +95,7 @@ times = []
 for epoch in range(1, args.epochs + 1):
     start = time.time()
     loss = train()
-    train_acc, val_acc, tmp_test_acc = test()
+    train_acc, val_acc, tmp_test_acc = ttest()
     if val_acc > best_val_acc:
         best_val_acc = val_acc
         test_acc = tmp_test_acc
